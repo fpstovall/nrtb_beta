@@ -169,6 +169,7 @@ public:
 struct base_object
 {
   bool alive {true};
+  float hit_points {0.0}; // generally, E(k) in newtons.
   // provides a unique sequence of id numbers for objects.
   static serializer object_num;
   // NOP destructor to ensure clean deallocation.
