@@ -251,6 +251,16 @@ bool base_object::check_collision(object_p o, float quanta)
   return (pp + pv * min_time > 0.0);
 };
 
+bool base_object::apply_collision(object_p o, float quanta)
+{
+  // this is a really simplistic impact energy model
+  triplet vels = o->velocity + velocity;
+  float v = fabs(vels.magnatude());
+  v = v*v;
+  float Ek = o->mass * v;
+  hit_points -= Ek;
+  return alive = hit_points >= 0.0;
+}
 
 void base_object::add_pre(effector_p e)
 {

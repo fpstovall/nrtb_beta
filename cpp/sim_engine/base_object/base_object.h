@@ -221,7 +221,7 @@ struct base_object
   // apply is called to accumlate and apply forces after tick.
   virtual bool apply(float quanta);
   // override apply_collision as needed; return true to kill the object.
-  virtual bool apply_collision(object_p o, float quanta) = 0;
+  virtual bool apply_collision(object_p o, float quanta);
   // used to trigger any processing mutexes, if needed.
   virtual void lock() {};
   virtual void unlock() {};

@@ -165,11 +165,6 @@ struct my_object : public base_object
     returnme->post_attribs = get_post_attribs_copy();
     return object_p(returnme);
   };
-
-  bool apply_collision(object_p o, float quanta) 
-  {
-    return false;
-  };
 };
 
 int main()
@@ -302,7 +297,6 @@ int main()
   mobile->location = triplet(0,2,0);
   mobile->velocity = triplet(0,-2,0);
 
-
   bool t = fixed.check_collision(mobile,1.0/50.0);
   results << fixed.location.range(mobile->location)
     << "=" << t << ",";
@@ -323,9 +317,17 @@ int main()
     << "=" << t;
   
   bool c = results.str() != "2.23607=0,1.4213=1,1.41421=1,1=1";
-  cout << results.str() << endl;
+  // cout << results.str() << endl;
   cout << "** Collision Test: " << (c ? "Failed" : "Passed") << endl;
-  
+
+  bool balive = fixed.alive;
+  float bhits = fixed.hit_points;
+  fixed.apply_collision(mobile, 1.0/50.0);
+  bool hpcheck = (!balive) or (fixed.alive) or (bhits != 0.0 ) 
+            or (fabs(fixed.hit_points + 250400.0) > 1.0);
+  cout << "** HP Check: " << (hpcheck ? "Failed" : "Passed") << endl;
+  failed = failed or hpcheck;
+
   // == quick clone test
   
   bool cl = mobile->as_str() != "ID=0:loc=(0,0,0):att=(0,0,0):vel=(0,-2,0):rot=(0,0,0):f=(0,0,0):t=(0,0,0):acc_mod=(0,-9.81,0):r_mod=(0,0,0):mass=100:mass_mod=0:b_sphere=(0,0,0),0.5:pre=gravity_0=(0,-9.81,0);:posts=";
