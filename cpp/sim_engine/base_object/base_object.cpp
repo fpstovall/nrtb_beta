@@ -258,8 +258,14 @@ bool base_object::apply_collision(object_p o, float quanta)
   float v = fabs(vels.magnatude());
   v = v*v;
   float Ek = o->mass * v;
-  hit_points -= Ek;
+  hit_points -= Ek + o->other_dmg_mod();
   return alive = hit_points >= 0.0;
+}
+
+float base_object::other_dmg_mod()
+{
+  // return zero by default.
+  return 0.0;
 }
 
 void base_object::add_pre(effector_p e)

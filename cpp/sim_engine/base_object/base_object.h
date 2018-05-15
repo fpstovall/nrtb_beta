@@ -220,6 +220,8 @@ struct base_object
   virtual bool tick(float quanta);
   // apply is called to accumlate and apply forces after tick.
   virtual bool apply(float quanta);
+  // the damage this object inflicts in a collision
+  virtual float other_dmg_mod();
   // override apply_collision as needed; return true to kill the object.
   virtual bool apply_collision(object_p o, float quanta);
   // used to trigger any processing mutexes, if needed.
