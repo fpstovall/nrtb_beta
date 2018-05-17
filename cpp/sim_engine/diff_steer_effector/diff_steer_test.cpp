@@ -75,8 +75,6 @@ struct driver : public base_object
     t->post_attribs = get_post_attribs_copy();
     return object_p(t);
   };
-  // nop collision application.
-  bool apply_collision(object_p o, float duration) {return false;};
 };
 
 typedef map<std::string,double> rtype;
