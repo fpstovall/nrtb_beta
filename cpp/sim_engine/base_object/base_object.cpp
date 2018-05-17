@@ -259,7 +259,8 @@ bool base_object::apply_collision(object_p o, float quanta)
   v = v*v;
   float Ek = o->mass * v;
   hit_points -= Ek + o->other_dmg_mod();
-  return alive = hit_points >= 0.0;
+  alive = hit_points >= 0.0;
+  return !alive;
 }
 
 float base_object::other_dmg_mod()
