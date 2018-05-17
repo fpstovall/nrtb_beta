@@ -121,11 +121,6 @@ bool bot_mk1::check_collision(object_p o, float duration)
   };
 };
 
-bool bot_mk1::apply_collision(object_p o, float duration)
-{
-  return false;
-};
-
 void bot_mk1::receiver()
 {
   auto & conf = global_conf_reader::get_reference();

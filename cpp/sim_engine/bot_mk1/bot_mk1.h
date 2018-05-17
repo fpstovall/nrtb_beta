@@ -60,7 +60,6 @@ struct bot_mk1: public abs_bot
   // the following return true if the object is destroyed.
   virtual bool tick(float duration);
   virtual bool apply(float duration);
-  virtual bool apply_collision(object_p o, float duration);
   // bot_interfaces stuff;
   void send_to_bcp(std::string msg);
   void bot_cmd(std::string cmd);
