@@ -289,10 +289,10 @@ void sim_core::resolve_collisions()
   {
     clsn_rec crec = collisions.pop();
     // call each object's collision routine
-    bool killa = crec.a->apply_collision(crec.b, quanta_duration);
-    bool killb = crec.b->apply_collision(crec.a, quanta_duration);
+    crec.a->apply_collision(crec.b, quanta_duration);
+    crec.b->apply_collision(crec.a, quanta_duration);
     // move out of conflict if alive and intersecting.
-    if (!(killa or killb))
+    if (crec.a->alive and crec.b->alive)
     {
       base_object & a = *(crec.a);
       base_object & b = *(crec.b);
@@ -312,9 +312,6 @@ void sim_core::resolve_collisions()
          b.location -= vec * adj;
       };
     };
-    // kill or adjust objects as needed.
-    if (killa) { remove_obj(crec.a->id); };
-    if (killb) { remove_obj(crec.b->id); };
   };
 };
 
