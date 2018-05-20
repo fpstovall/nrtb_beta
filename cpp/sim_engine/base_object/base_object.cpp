@@ -31,7 +31,8 @@ rotatable::rotatable(triplet s)
 {};
 
 rotatable::rotatable(rotatable & a)
-  : axis(a.angles()), dirty(true)
+  : axis(a.angles()), dirty(false),
+    cos(a.get_cos()), sin(a.get_sin())
 {};
 
 void rotatable::trim()
