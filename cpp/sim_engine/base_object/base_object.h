@@ -176,6 +176,7 @@ struct base_object
   virtual ~base_object() {};
   // polymophic copier, override for descendents.
   virtual object_p clone() = 0;
+  virtual void copy_fields(base_object & o);
   // Unique object id, seeded from the serializer
   unsigned long long id = object_num();
   // Object type ID, set to a number in child constructors.

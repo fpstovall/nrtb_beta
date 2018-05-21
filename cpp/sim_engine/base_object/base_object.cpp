@@ -119,6 +119,28 @@ void effector_list::remove(long long unsigned int key)
   erase(key);
 };
 
+void base_object::copy_fields(base_object & o)
+{
+  // transfer all the fields.
+  o.alive = alive;
+  o.id = id;
+  o.object_type = object_type;
+  o.handle = handle;
+  o.location = location;
+  o.attitude.set(attitude);
+  o.velocity = velocity;
+  o.rotation.set(rotation);
+  o.mass = mass;
+  o.bounding_sphere = bounding_sphere;
+  o.force = force;
+  o.torque.set(torque);
+  o.accel_mod = accel_mod;
+  o.rotation_mod.set(rotation_mod);
+  o.mass_mod = mass_mod;
+  o.pre_attribs = get_pre_attribs_copy();
+  o.post_attribs = get_post_attribs_copy();
+};
+
 bool base_object::command(std::string cmd, std::string & response)
 {
 	bool found = false;
