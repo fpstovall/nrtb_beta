@@ -177,7 +177,7 @@ std::string base_object::as_str()
   return returnme.str();
 };
 
-bool base_object::tick(float quanta)
+void base_object::tick(float quanta)
 {
   // clean up for next pass
   accel_mod = 0;
@@ -222,10 +222,9 @@ bool base_object::tick(float quanta)
     rotation_mod.set((rotation.angles() + rbase.angles()) / 2.0);
   }
   alive != killme;
-  return killme;
 };
 
-bool base_object::apply(float quanta)
+void base_object::apply(float quanta)
 {
   // move acording to forces
   location += velocity * quanta;
@@ -238,7 +237,6 @@ bool base_object::apply(float quanta)
     if (e.second->tick(*this, quanta))
       killme = true;
   alive != killme;
-  return killme;
 };
 
 bool base_object::check_collision(object_p o, float quanta)
@@ -274,7 +272,7 @@ bool base_object::check_collision(object_p o, float quanta)
   return (pp + pv * min_time > 0.0);
 };
 
-bool base_object::apply_collision(object_p o, float quanta)
+void base_object::apply_collision(object_p o, float quanta)
 {
   // this is a really simplistic impact energy model
   triplet vels = o->velocity + velocity;
@@ -283,7 +281,6 @@ bool base_object::apply_collision(object_p o, float quanta)
   float Ek = o->mass * v;
   hit_points -= Ek + o->other_dmg_mod();
   alive = hit_points >= 0.0;
-  return !alive;
 }
 
 float base_object::other_dmg_mod()

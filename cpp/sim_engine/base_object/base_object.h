@@ -218,13 +218,13 @@ struct base_object
   virtual bool check_collision(object_p o, float quanta);
   // --the following return true if the object is destroyed.
   // Tick sets up for a turn and calles the pre-effector list.
-  virtual bool tick(float quanta);
+  virtual void tick(float quanta);
   // apply is called to accumlate and apply forces after tick.
-  virtual bool apply(float quanta);
+  virtual void apply(float quanta);
   // the damage this object inflicts in a collision
   virtual float other_dmg_mod();
   // override apply_collision as needed; return true to kill the object.
-  virtual bool apply_collision(object_p o, float quanta);
+  virtual void apply_collision(object_p o, float quanta);
   // used to trigger any processing mutexes, if needed.
   virtual void lock() {};
   virtual void unlock() {};
