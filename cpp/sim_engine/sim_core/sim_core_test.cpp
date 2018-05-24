@@ -135,9 +135,8 @@ struct my_object : public base_object
     
   object_p clone()
   {
-    my_object * returnme = new my_object(*this);
-    returnme->pre_attribs = get_pre_attribs_copy();
-    returnme->post_attribs = get_post_attribs_copy();
+    my_object * returnme = new my_object();
+    copy_fields(*returnme);
     return object_p(returnme);
   };
 };

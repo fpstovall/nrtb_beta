@@ -494,7 +494,7 @@ void sim_core::do_tick()
     {
       auto v = ticklist.pop();
       for (auto & o : v)
-        o->alive = !o->tick(quanta_duration);
+        o->tick(quanta_duration);
       ticklist.task_done();
     }
   }
@@ -508,7 +508,7 @@ void sim_core::do_apply()
     {
       auto v = applylist.pop();
       for (auto & o : v)
-        o->alive = !o->apply(quanta_duration);
+        o->apply(quanta_duration);
       applylist.task_done();
     }
   }
