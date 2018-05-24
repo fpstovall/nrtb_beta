@@ -283,7 +283,8 @@ int main()
   
   // ********* collision tests ***********
   // -- fixed v. mobile test.
-  my_object fixed = rocket_ball;
+  my_object fixed;
+  rocket_ball.copy_fields(fixed);
   fixed.location = triplet(1,0,0);
   fixed.velocity = triplet(-50,0,0);
   object_p mobile(rocket_ball.clone());

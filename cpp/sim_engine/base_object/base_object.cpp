@@ -122,7 +122,7 @@ void effector_list::remove(long long unsigned int key)
 void base_object::copy_fields(base_object & o)
 {
   // transfer all the fields.
-  o.alive = alive;
+  o.alive.store(alive.load());
   o.id = id;
   o.object_type = object_type;
   o.handle = handle;
